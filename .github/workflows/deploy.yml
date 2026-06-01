@@ -2,7 +2,7 @@ name: Deploy Frontend a VPS
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" ] 
 
 jobs:
   build-and-deploy:
@@ -15,8 +15,15 @@ jobs:
       - name: Verificar entorno en la VPS
         run: |
           echo "Servidor de Oracle - FRONTEND"
-          echo "Carpeta: $(pwd)"
           docker --version
+          docker compose version
           
-      - name: Simular construcción de imagen
-        run: echo "Testing construcción de la imagen Docker para el FRONT."
+      - name: Actualizar repositorio de infraestructura
+        run: |
+          cd /opt/novatech-solutions/runner/_work/infrastructure/infrastructure
+          git pull origin main
+
+      - name: Reconstruir y desplegar imagen Docker del Frontend
+        run: |
+          cd /opt/novatech-solutions/runner/_work/infrastructure/infrastructure
+          docker compose up -d --build frontend
