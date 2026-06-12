@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
-import { ArrowLeft, Edit2, Trash2 } from 'lucide-react';
+import { ArrowLeft, Edit2, Trash2, RefreshCw } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { api } from '../../services/api';
 import { useToast } from '../../context/ToastContext';
@@ -19,18 +19,25 @@ export default function DetallePedido() {
   
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
   const ticketRef = useRef(null);
 
-  const fetchOrder = () => {
-    setLoading(true);
+  const isAdmin = user?.rol === 'administrador';
+
+  const fetchOrder = (silent = false) => {
+    if (silent) setIsRefreshing(true);
+    else setLoading(true);
+    
     api.getPedidoById(id)
       .then((data) => {
         setOrder(data);
         setLoading(false);
+        setIsRefreshing(false);
       })
       .catch((err) => {
         console.error(err);
         setLoading(false);
+        setIsRefreshing(false);
       });
   };
 
@@ -39,7 +46,6 @@ export default function DetallePedido() {
   }, [id]);
 
   if (loading) {
-    const isAdmin = user?.rol === 'administrador';
     return (
       <div className="flex-1 flex flex-col justify-center items-center text-center space-y-3">
         <div className={`w-8 h-8 border-4 ${isAdmin ? 'border-purple-500 border-t-transparent' : 'border-blue-600 border-t-transparent'} rounded-full animate-spin`}></div>
@@ -138,15 +144,25 @@ export default function DetallePedido() {
   return (
     <div className="flex-1 flex flex-col justify-start space-y-4 overflow-y-auto pr-1">
       {/* Barra de navegación interna / Título */}
-      <div className="flex items-center gap-2 text-gray-800 shrink-0">
+      <div className="flex items-center justify-between text-gray-800 shrink-0">
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => navigate('/pedidos')}
+            className="p-1 hover:bg-gray-100 rounded-lg text-gray-400 transition-colors cursor-pointer"
+            aria-label="Volver a la lista de pedidos"
+          >
+            <ArrowLeft size={16} strokeWidth={3} />
+          </button>
+          <h3 className="text-base font-black tracking-tight">Pedido #{order.id}</h3>
+        </div>
         <button
-          onClick={() => navigate('/pedidos')}
-          className="p-1 hover:bg-gray-100 rounded-lg text-gray-400 transition-colors cursor-pointer"
-          aria-label="Volver a la lista de pedidos"
+          onClick={() => fetchOrder(true)}
+          disabled={isRefreshing}
+          className="p-1.5 hover:bg-gray-100 border border-transparent hover:border-gray-200 rounded-lg text-gray-500 transition-all active:scale-95 cursor-pointer disabled:opacity-50"
+          title="Actualizar información"
         >
-          <ArrowLeft size={16} strokeWidth={3} />
+          <RefreshCw size={16} strokeWidth={2.5} className={isRefreshing ? "animate-spin" : ""} />
         </button>
-        <h3 className="text-base font-black tracking-tight">Pedido #{order.id}</h3>
       </div>
 
       {/* Card de Estados Principales */}
@@ -178,7 +194,7 @@ export default function DetallePedido() {
 
         {/* Botones de Gestión (Staff only) */}
         {!isClient && (
-          <div className="grid grid-cols-2 gap-2 pt-1">
+          <div className={`grid ${isAdmin ? 'grid-cols-2' : 'grid-cols-1'} gap-2 pt-1`}>
             <button
               onClick={() => navigate(`/pedidos/${order.id}/editar`)}
               className="flex items-center justify-center gap-1.5 py-2 bg-white hover:bg-gray-100 border border-gray-200 text-gray-700 rounded-xl font-bold text-[11px] shadow-sm transition-all active:scale-95 cursor-pointer"
@@ -186,13 +202,15 @@ export default function DetallePedido() {
               <Edit2 size={13} strokeWidth={2.5} />
               Editar Pedido
             </button>
-            <button
-              onClick={handleBajaLogica}
-              className="flex items-center justify-center gap-1.5 py-2 bg-red-50 hover:bg-red-100 border border-red-100 text-red-600 rounded-xl font-bold text-[11px] shadow-sm transition-all active:scale-95 cursor-pointer"
-            >
-              <Trash2 size={13} strokeWidth={2.5} />
+            { isAdmin && (
+              <button
+                onClick={handleBajaLogica}
+                className="flex items-center justify-center gap-1.5 py-2 bg-red-50 hover:bg-red-100 border border-red-100 text-red-600 rounded-xl font-bold text-[11px] shadow-sm transition-all active:scale-95 cursor-pointer"
+              >
+                <Trash2 size={13} strokeWidth={2.5} />
               Dar de Baja
             </button>
+            )}
           </div>
         )}
       </div>
