@@ -175,7 +175,7 @@ export default function AppHeader() {
         {/* Acceso Global a Servicios */}
         <button
           onClick={() => navigate('/servicios')}
-          className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition-all cursor-pointer"
+          className={`p-2 rounded-xl transition-all cursor-pointer ${location.pathname.startsWith('/servicios') ? 'text-blue-600 bg-blue-50' : 'text-gray-400 hover:text-blue-600 hover:bg-blue-50'}`}
           title="Módulo de Servicios"
         >
           <Tag size={18} strokeWidth={2.5} />
@@ -184,7 +184,7 @@ export default function AppHeader() {
         {/* Acceso Global a Reclamos */}
         <button
           onClick={() => navigate('/reclamos')}
-          className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition-all relative cursor-pointer"
+          className={`p-2 rounded-xl transition-all relative cursor-pointer ${location.pathname.startsWith('/reclamos') ? 'text-red-600 bg-red-50' : 'text-gray-400 hover:text-red-600 hover:bg-red-50'}`}
           title="Centro de Reclamos"
         >
           <AlertTriangle size={18} strokeWidth={2.5} />

@@ -546,7 +546,7 @@ export default function Servicios() {
       </div>
 
       {/* Listado */}
-      <div className="space-y-3 pt-1 flex-1">
+      <div className="gap-3 pt-1 flex flex-row flex-wrap justify-around">
         {filteredServicios.map(serv => (
           <div
             key={serv.id}

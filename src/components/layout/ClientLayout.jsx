@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import MobileContainer from './MobileContainer';
 import AppHeader from './AppHeader';
 import BottomNavbar from './BottomNavbar';
+import Sidebar from './Sidebar';
 
 export default function ClientLayout() {
   const location = useLocation();
@@ -20,20 +21,25 @@ export default function ClientLayout() {
 
   return (
     <MobileContainer 
-      padding={(isChatPage || isEditOrderPage) ? "p-0" : "p-6"} 
-      className={(isChatPage || isEditOrderPage) ? "overflow-hidden" : ""}
+      padding="p-0" 
+      className={`md:flex md:flex-row ${(isChatPage || isEditOrderPage) ? "overflow-hidden" : ""}`}
     >
-      <div className="flex-1 flex flex-col justify-between h-full relative">
-        {/* Cabecera adaptativa */}
-        {!hideDefaultHeader && <AppHeader />}
+      {/* Sidebar en desktop */}
+      <Sidebar />
 
-        {/* Contenido dinámico */}
-        <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
-          <Outlet />
+      <div className="flex-1 flex flex-col justify-between h-full relative md:bg-gray-50/30 w-full overflow-hidden">
+        <div className={`flex-1 flex flex-col min-h-0 overflow-hidden ${(isChatPage || isEditOrderPage) ? "p-0" : "p-6 md:p-8"}`}>
+          {/* Cabecera adaptativa */}
+          {!hideDefaultHeader && <AppHeader />}
+
+          {/* Contenido dinámico */}
+          <div className="flex-1 flex flex-col min-h-0 overflow-hidden">
+            <Outlet />
+          </div>
         </div>
 
         {/* Navbar inferior */}
-        {!hideNavbar && <div className="h-16 shrink-0"></div>} {/* Espaciador para no tapar contenido */}
+        {!hideNavbar && <div className="h-16 shrink-0 md:hidden"></div>}
         {!hideNavbar && <BottomNavbar />}
       </div>
     </MobileContainer>

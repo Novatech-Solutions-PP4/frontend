@@ -396,7 +396,7 @@ export default function Insumos() {
       </div>
 
       {/* Listado */}
-      <div className="space-y-3 pt-1 flex-1">
+      <div className="gap-3 pt-1 flex flex-row flex-wrap justify-around">
         {filteredInsumos.map(insumo => {
           const isCritical = insumo.cantidad < insumo.alerta;
           return (
