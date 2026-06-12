@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@media (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+}
 .floating-input:focus ~ .floating-label,
 .floating-input:not(:placeholder-shown) ~ .floating-label {
   transform: translateY(-1.5rem) scale(0.75);
