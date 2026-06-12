@@ -195,7 +195,7 @@ export default function BottomNavbar() {
   const navItems = getNavItems();
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 bg-white border-t p-3 flex justify-around items-center rounded-b-2xl shadow-inner z-50 shrink-0">
+    <div className="absolute bottom-0 left-0 right-0 bg-white border-t p-3 flex justify-around items-center rounded-b-2xl md:rounded-none shadow-inner z-50 shrink-0 md:hidden">
       {navItems.map((item) => {
         const active = isActive(item.path);
         return (
