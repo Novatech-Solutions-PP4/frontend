@@ -114,7 +114,7 @@ export default function ReclamoNuevo() {
           value={pedidoId}
           onChange={(e) => setPedidoId(e.target.value)}
           options={pedidoOptions}
-          placeholder="Elegí una orden activa..."
+          placeholder="Elegí una orden..."
           required
         />
 
