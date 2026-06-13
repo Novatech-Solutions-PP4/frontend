@@ -396,13 +396,13 @@ export default function Insumos() {
       </div>
 
       {/* Listado */}
-      <div className="gap-3 pt-1 flex flex-row flex-wrap justify-around">
+      <div className="flex flex-col md:flex-row md:flex-wrap gap-3 pt-1">
         {filteredInsumos.map(insumo => {
           const isCritical = insumo.cantidad < insumo.alerta;
           return (
             <div
               key={insumo.id}
-              className={`bg-white border rounded-xl p-4 flex justify-between items-center shadow-sm transition-all hover:border-gray-300 ${
+              className={`w-full md:w-80 bg-white border rounded-xl p-4 flex justify-between items-center shadow-sm transition-all hover:border-gray-300 ${
                 isCritical ? 'border-red-500 bg-red-50/10' : 'border-gray-200'
               }`}
             >

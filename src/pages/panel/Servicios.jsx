@@ -546,12 +546,12 @@ export default function Servicios() {
       </div>
 
       {/* Listado */}
-      <div className="gap-3 pt-1 flex flex-row flex-wrap justify-around">
+      <div className="flex flex-col md:flex-row md:flex-wrap gap-3 pt-1">
         {filteredServicios.map(serv => (
           <div
             key={serv.id}
             onClick={() => isAdmin && startEditView(serv)}
-            className={`bg-white border border-gray-200 rounded-xl p-3.5 flex justify-between items-center transition-all shadow-sm ${
+            className={`w-full md:w-80 bg-white border border-gray-200 rounded-xl p-3.5 flex justify-between items-center transition-all shadow-sm ${
               isAdmin ? 'hover:border-purple-300 cursor-pointer' : 'hover:border-blue-300'
             }`}
           >
