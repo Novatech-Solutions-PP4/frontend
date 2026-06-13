@@ -27,7 +27,7 @@ export default function OrderCard({ order, isHistory = false }) {
     return (
       <div
         onClick={handleManage}
-        className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm opacity-75 hover:opacity-100 transition-all hover:border-blue-300 flex justify-between items-center cursor-pointer group"
+        className="w-full md:w-80 bg-white border border-gray-200 rounded-xl p-4 shadow-sm opacity-75 hover:opacity-100 transition-all hover:border-blue-300 flex justify-between items-center cursor-pointer group"
       >
         <div className="flex items-center gap-3">
           <StatusBadge status={order.status} type="dot" />
@@ -48,7 +48,7 @@ export default function OrderCard({ order, isHistory = false }) {
 
   if (isClient) {
     return (
-      <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm space-y-3 transition-all hover:border-blue-300">
+      <div className="w-full md:w-80 bg-white border border-gray-200 rounded-xl p-4 shadow-sm space-y-3 transition-all hover:border-blue-300">
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-3">
             <StatusBadge status={order.status} type="dot" />
@@ -91,7 +91,7 @@ export default function OrderCard({ order, isHistory = false }) {
 
   return (
     <>
-      <div className={`bg-white border border-gray-200 rounded-xl p-4 shadow-sm flex justify-between items-center transition-all ${hoverColorClass}`}>
+      <div className={`w-full md:w-80 bg-white border border-gray-200 rounded-xl p-4 shadow-sm flex justify-between items-center transition-all ${hoverColorClass}`}>
         <div className="space-y-2">
           <div className="flex items-center gap-2">
             <h3 className="font-black text-gray-800 text-sm">Pedido #{order.id}</h3>

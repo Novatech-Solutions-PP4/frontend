@@ -280,7 +280,7 @@ export default function Clientes() {
       </div>
 
       {/* Listado */}
-      <div className="space-y-3 pt-1 flex-1">
+      <div className="flex flex-col md:flex-row md:flex-wrap gap-3 pt-1">
         {filteredClientes.map(cliente => (
           <div
             key={cliente.id}
@@ -288,7 +288,7 @@ export default function Clientes() {
               setSelectedCliente(cliente);
               setView('detail');
             }}
-            className="bg-white border border-gray-200 rounded-xl p-3.5 flex justify-between items-center hover:border-amber-300 transition-all shadow-sm cursor-pointer"
+            className="w-full md:w-80 bg-white border border-gray-200 rounded-xl p-3.5 flex justify-between items-center hover:border-amber-300 transition-all shadow-sm cursor-pointer"
           >
             <div>
               <h4 className="font-extrabold text-gray-800 text-sm">
@@ -308,7 +308,7 @@ export default function Clientes() {
         ))}
 
         {filteredClientes.length === 0 && (
-          <div className="text-center py-8 text-xs text-gray-400">
+          <div className="w-full text-center py-8 text-xs text-gray-400">
             No se encontraron clientes.
           </div>
         )}

@@ -435,12 +435,12 @@ export default function Usuarios() {
       </div>
 
       {/* Listado */}
-      <div className="space-y-3 pt-1 flex-1">
+      <div className="flex flex-col md:flex-row md:flex-wrap gap-3 pt-1">
         {filteredUsuarios.map(usuario => (
           <div
             key={usuario.id}
             onClick={() => startEditView(usuario)}
-            className="bg-white border border-gray-200 rounded-xl p-3.5 flex justify-between items-center hover:border-purple-300 transition-all shadow-sm cursor-pointer"
+            className="w-full md:w-80 bg-white border border-gray-200 rounded-xl p-3.5 flex justify-between items-center hover:border-purple-300 transition-all shadow-sm cursor-pointer"
           >
             <div>
               <div className="flex items-center gap-2">
@@ -465,7 +465,7 @@ export default function Usuarios() {
         ))}
 
         {filteredUsuarios.length === 0 && (
-          <div className="text-center py-8 text-xs text-gray-400">
+          <div className="w-full text-center py-8 text-xs text-gray-400">
             No se encontraron usuarios.
           </div>
         )}

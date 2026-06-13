@@ -98,34 +98,38 @@ export default function Pedidos() {
           </span>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-2">
           <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider pl-1">
             Activos
           </h3>
-          {clientActiveOrders.length > 0 ? (
-            clientActiveOrders.map((order) => (
-              <OrderCard key={order.id} order={order} />
-            ))
-          ) : (
-            <div className="text-center py-4 text-xs text-gray-400 bg-gray-50 border rounded-xl">
-              No tienes pedidos activos.
-            </div>
-          )}
+          <div className="flex flex-col md:flex-row md:flex-wrap gap-3">
+            {clientActiveOrders.length > 0 ? (
+              clientActiveOrders.map((order) => (
+                <OrderCard key={order.id} order={order} />
+              ))
+            ) : (
+              <div className="w-full text-center py-4 text-xs text-gray-400 bg-gray-50 border rounded-xl">
+                No tienes pedidos activos.
+              </div>
+            )}
+          </div>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-2">
           <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider pl-1">
             Historial
           </h3>
-          {clientHistoricalOrders.length > 0 ? (
-            clientHistoricalOrders.map((order) => (
-              <OrderCard key={order.id} order={order} isHistory />
-            ))
-          ) : (
-            <div className="text-center py-4 text-xs text-gray-400 bg-gray-50 border rounded-xl">
-              Aún no tienes pedidos entregados en tu historial.
-            </div>
-          )}
+          <div className="flex flex-col md:flex-row md:flex-wrap gap-3">
+            {clientHistoricalOrders.length > 0 ? (
+              clientHistoricalOrders.map((order) => (
+                <OrderCard key={order.id} order={order} isHistory />
+              ))
+            ) : (
+              <div className="w-full text-center py-4 text-xs text-gray-400 bg-gray-50 border rounded-xl">
+                Aún no tienes pedidos entregados en tu historial.
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -173,13 +177,13 @@ export default function Pedidos() {
       </div>
 
       {/* Listado de Pedidos */}
-      <div className="space-y-3 flex-1">
+      <div className="flex flex-col md:flex-row md:flex-wrap gap-3 pt-1">
         {filteredStaffOrders.length > 0 ? (
           filteredStaffOrders.map((order) => (
             <OrderCard key={order.id} order={order} />
           ))
         ) : (
-          <div className="text-center py-8 text-xs text-gray-400">
+          <div className="w-full text-center py-8 text-xs text-gray-400">
             No se encontraron pedidos con los filtros aplicados.
           </div>
         )}
