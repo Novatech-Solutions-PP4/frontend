@@ -99,7 +99,7 @@ export default function Dashboard() {
       {/* Contadores */}
       <div className="space-y-3 pt-1">
         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider pl-1">
-          {isClient ? 'Estado de tus pedidos' : isOperator ? 'Monitoreo de Órdenes' : 'Monitoreo en Tiempo Real'}
+          {isClient ? 'Estado de tus pedidos' : 'Monitoreo de Órdenes'}
         </p>
 
         {isClient && (
