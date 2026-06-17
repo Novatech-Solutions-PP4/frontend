@@ -12,20 +12,6 @@ La versión desplegada se encuentra disponible en:
 
 **https://app.lavapro.online**
 
-### Usuarios de prueba
-
-| Rol           | Usuario                                             |
-| ------------- | --------------------------------------------------- |
-| Administrador | [admin@lavapro.com](mailto:admin@lavapro.com)       |
-| Operador      | [operador@lavapro.com](mailto:operador@lavapro.com) |
-| Cliente       | [cliente@lavapro.com](mailto:cliente@lavapro.com)   |
-
-**Contraseña para todos los usuarios:**
-
-```text
-password123
-```
-
 ## Tecnologías utilizadas
 
 * React
