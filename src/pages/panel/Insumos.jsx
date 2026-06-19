@@ -111,7 +111,7 @@ export default function Insumos() {
     e.preventDefault();
     const errors = [];
     if (!formNombre.trim()) errors.push('Nombre del Material');
-    if (formCantidad === '' || isNaN(parseInt(formCantidad)) || parseInt(formCantidad) < 0) errors.push('Cantidad Disponible (Debe ser mayor o igual a 0)');
+    if (formCantidad === '' || isNaN(parseInt(formCantidad))) errors.push('Cantidad Disponible (Debe ser un valor numérico)');
     if (formAlerta === '' || isNaN(parseInt(formAlerta)) || parseInt(formAlerta) < 0) errors.push('Umbral de Stock Mínimo (Debe ser mayor o igual a 0)');
     if (formCosto === '' || isNaN(parseFloat(formCosto)) || parseFloat(formCosto) < 0) errors.push('Costo Unitario (Debe ser mayor o igual a 0)');
 
@@ -144,7 +144,7 @@ export default function Insumos() {
     e.preventDefault();
     const errors = [];
     if (!formNombre.trim()) errors.push('Nombre del Material');
-    if (formCantidad === '' || isNaN(parseInt(formCantidad)) || parseInt(formCantidad) < 0) errors.push('Cantidad Disponible (Debe ser mayor o igual a 0)');
+    if (formCantidad === '' || isNaN(parseInt(formCantidad))) errors.push('Cantidad Disponible (Debe ser un valor numérico)');
     if (formAlerta === '' || isNaN(parseInt(formAlerta)) || parseInt(formAlerta) < 0) errors.push('Umbral de Stock Mínimo (Debe ser mayor o igual a 0)');
     if (formCosto === '' || isNaN(parseFloat(formCosto)) || parseFloat(formCosto) < 0) errors.push('Costo Unitario (Debe ser mayor o igual a 0)');
 
